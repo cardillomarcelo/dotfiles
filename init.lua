@@ -17,6 +17,8 @@ call('plug#begin')
     Plug 'jose-elias-alvarez/null-ls.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'rcarriga/nvim-dap-ui'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter'
 call'plug#end'
 
 local lsp_zero = require('lsp-zero')
@@ -142,3 +144,8 @@ dap.adapters.delve = {
 
 vim.keymap.set('n', '<leader>db', function() require('dap').toggle_breakpoint() end, { desc = 'Set breakpoint'})
 vim.keymap.set('n', '<leader>ds', function() require('dap').continue() end, { desc = 'Set breakpoint'})
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fn', builtin.help_tags, {})
