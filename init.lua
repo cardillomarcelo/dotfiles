@@ -2,7 +2,6 @@ vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
 
 local call = vim.call
 local cmd = vim.cmd
@@ -118,9 +117,10 @@ dap.adapters.delve = {
   dap.configurations.go = {
     {
       type = "delve",
-      name = "Debug",
+      name = "Main",
       request = "launch",
-      program = "${file}"
+      mode = "debug",
+      program = "${workspaceFolder}/cmd/api/main.go"
     },
     {
       type = "delve",
@@ -139,39 +139,6 @@ dap.adapters.delve = {
     } 
   }
 
-  dap.adapters.delve = {
-  type = 'server',
-  port = '${port}',
-  executable = {
-    command = 'dlv',
-    args = {'dap', '-l', '127.0.0.1:${port}'},
-  }
-}
-
--- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
-dap.configurations.go = {
-  {
-    type = "delve",
-    name = "Debug",
-    request = "launch",
-    program = "${file}"
-  },
-  {
-    type = "delve",
-    name = "Debug test", -- configuration for debugging test files
-    request = "launch",
-    mode = "test",
-    program = "${file}"
-  },
-  -- works with go.mod packages and sub packages 
-  {
-    type = "delve",
-    name = "Debug test (go.mod)",
-    request = "launch",
-    mode = "test",
-    program = "./${relativeFileDirname}"
-  } 
-}
 
 vim.keymap.set('n', '<leader>db', function() require('dap').toggle_breakpoint() end, { desc = 'Set breakpoint'})
 vim.keymap.set('n', '<leader>ds', function() require('dap').continue() end, { desc = 'Set breakpoint'})
