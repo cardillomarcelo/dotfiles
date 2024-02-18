@@ -3,3 +3,4 @@
 - i3-wm
 - picom
 - rofi
+- kitty
