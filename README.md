@@ -4,3 +4,11 @@
 - picom
 - rofi
 - kitty
+- gpaste
+- xdotool
+- xclip
+- coreutils
+
+### Rofi scripts
+
+- rofi-gpaste
